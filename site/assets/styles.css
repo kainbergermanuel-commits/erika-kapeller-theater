@@ -359,11 +359,12 @@ body.navi-offen { overflow: hidden; }
 .spalten { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(36px, 6vw, 96px); align-items: center; }
 .spalten.bild-rechts > :first-child { order: 0; }
 .spalten > * { min-width: 0; }
-.bildrahmen { position: relative; }
-.bildrahmen img { width: 100%; filter: grayscale(1) contrast(1.08); }
+.bildrahmen { position: relative; isolation: isolate; }
+.bildrahmen .rahmen { position: relative; }
+.bildrahmen img { display: block; width: 100%; filter: grayscale(1) contrast(1.08); }
 .bildrahmen.farbig img { filter: none; }
-.bildrahmen::before { content: ''; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid rgba(var(--messing-rgb), .45); z-index: -1; }
-.bildrahmen figcaption { margin-top: 14px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--grau); }
+.bildrahmen .rahmen::before { content: ''; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid rgba(var(--messing-rgb), .45); z-index: -1; pointer-events: none; }
+.bildrahmen figcaption { margin-top: 38px; padding-left: 18px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--grau); }
 @media (max-width: 860px) { .spalten { grid-template-columns: 1fr; } .bildrahmen { max-width: 480px; } }
 
 /* ---------- Kasten & Liste ---------- */
