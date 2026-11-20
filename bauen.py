@@ -86,7 +86,10 @@ TICKET = '''
 FUSS = '''</main>
 <footer class="fuss">
   <div class="huelle">
-    <p class="fuss-gross" aria-hidden="true">Vorhang auf.</p>
+    <div class="fuss-kopf">
+      <p class="fuss-gross" aria-hidden="true">Vorhang auf.</p>
+      <p class="fuss-licht"><span class="geisterlicht" aria-hidden="true"></span><span>Das Geisterlicht bleibt an.<small>So heißt die Lampe, die nachts auf jeder leeren Bühne brennt.</small></span></p>
+    </div>
     <div class="fuss-raster">
       <div>
         <a class="marke" href="index.html"><span class="marke-name">Erika <em>Kapeller</em></span><span class="marke-zeile">Autorin · Regie · Bühne</span></a>
