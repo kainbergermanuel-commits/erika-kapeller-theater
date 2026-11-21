@@ -140,3 +140,25 @@
   var m = /[?&]anliegen=([^&]+)/.exec(location.search);
   if (sel && m) { var w = decodeURIComponent(m[1]); [].forEach.call(sel.options, function (o) { if (o.value === w) sel.value = w; }); }
 })();
+
+/* Design-Umschalter: Bühne (dunkel) / Galerie (hell) */
+(function () {
+  var knopf = document.querySelector('.design-wahl');
+  if (!knopf) return;
+  var root = document.documentElement;
+  function schrift() {
+    if (document.getElementById('galerie-schrift')) return;
+    var l = document.createElement('link');
+    l.id = 'galerie-schrift'; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
+    document.head.appendChild(l);
+  }
+  function zeigen() { knopf.querySelector('b').textContent = root.dataset.design === 'galerie' ? 'Galerie' : 'Bühne'; }
+  zeigen();
+  knopf.addEventListener('click', function () {
+    var neu = root.dataset.design === 'galerie' ? 'buehne' : 'galerie';
+    if (neu === 'galerie') { schrift(); root.dataset.design = 'galerie'; } else { delete root.dataset.design; }
+    try { localStorage.setItem('design', neu); } catch (e) {}
+    zeigen();
+  });
+})();
