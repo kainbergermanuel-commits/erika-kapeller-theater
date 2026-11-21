@@ -602,3 +602,28 @@ body.ohne-vorhang .held .auftritt { animation-delay: .1s; }
   .marke-name { font-size: 24px; }
   .knopfreihe .knopf { justify-content: center; }
 }
+
+/* ---------- Glas-Paneele: Karten als filigrane, kantige Glasscheiben ---------- */
+.karte, .held-premiere {
+  background:
+    linear-gradient(115deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.02) 38%, rgba(255,255,255,0) 39%, rgba(255,255,255,.035) 62%, rgba(255,255,255,.01) 100%),
+    rgba(28,22,19,.42);
+  backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),      /* Lichtkante oben */
+    inset 1px 0 0 rgba(255,255,255,.06),      /* Lichtkante links */
+    inset 0 -1px 0 rgba(0,0,0,.35),           /* Schattenkante unten */
+    0 24px 50px -28px rgba(0,0,0,.7);
+}
+/* geschliffene Facette: feine zweite Kante, knapp innen */
+.karte::after {
+  content: ''; position: absolute; inset: 5px; pointer-events: none; z-index: 1;
+  border: 1px solid rgba(255,255,255,.035);
+  background: linear-gradient(115deg, transparent 46%, rgba(255,255,255,.05) 50%, transparent 54%) 140% 0 / 250% 100% no-repeat;
+  transition: background-position 1.4s var(--weich);
+}
+.karte:hover::after { background-position: -40% 0; }        /* Lichtreflex wandert beim Überfahren */
+.karte:hover { border-color: rgba(var(--messing-rgb), .38); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 1px 0 0 rgba(255,255,255,.08), inset 0 -1px 0 rgba(0,0,0,.35), 0 30px 60px -28px rgba(0,0,0,.8); }
+@media (prefers-reduced-motion: reduce) { .karte::after { transition: none; } }
