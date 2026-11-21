@@ -191,6 +191,17 @@ body.navi-offen { overflow: hidden; }
 /* ---------- Bühnenkopf der Unterseiten ---------- */
 .buehnenkopf { position: relative; padding: clamp(150px, 20vw, 210px) 0 clamp(70px, 9vw, 120px); overflow: hidden; border-bottom: 1px solid var(--linie); }
 .buehnenkopf .huelle { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(30px, 6vw, 90px); align-items: end; }
+.kopf-kunst { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 74%; animation: buehne-auf 2.6s var(--weich) .1s both; }
+.mit-kunst::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(13,10,9,.95) 0%, rgba(13,10,9,.8) 32%, rgba(13,10,9,.2) 58%, rgba(13,10,9,0) 70%), linear-gradient(180deg, rgba(13,10,9,.6) 0, rgba(13,10,9,0) 140px), linear-gradient(0deg, rgba(13,10,9,.7) 0, rgba(13,10,9,0) 90px); }
+.mit-kunst .huelle { z-index: 2; grid-template-columns: minmax(0, 1fr); }
+.mit-kunst .huelle > * { max-width: 640px; }
+.mit-kunst .seitenzitat { margin-top: 6px; font-size: 18px; }
+.mit-kunst .kreuz { z-index: 2; }
+@media (max-width: 860px) {
+  .kopf-kunst { object-position: 76% 70%; opacity: .55; }
+  .mit-kunst::after { background: linear-gradient(180deg, rgba(13,10,9,.5) 0, rgba(13,10,9,.35) 40%, rgba(13,10,9,.9) 100%); }
+}
 .buehnenkopf h1 { margin: 22px 0 26px; font-size: clamp(46px, 7vw, 96px); }
 .buehnenkopf .seitenzitat { font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.5; color: var(--grau); border-left: 1px solid var(--messing); padding-left: 22px; }
 .buehnenkopf .seitenzitat cite { display: block; margin-top: 10px; font-family: var(--sans); font-style: normal; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--messing); }
