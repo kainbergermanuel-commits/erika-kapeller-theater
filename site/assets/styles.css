@@ -728,3 +728,10 @@ main { position: relative; }
 .seite-start .karte-ticket { padding-top: 220px; }
 @media (max-width: 700px) { .ticket-figur { width: 170px; top: -138px; right: 50%; transform: translateX(50%); } .seite-start .karte-ticket { padding-top: 170px; } }
 @media (prefers-reduced-motion: reduce) { .masken { animation: none; } }
+/* Tooltips dürfen aus Karten herausragen */
+.karte:has(.tipp) { overflow: visible; }
+.karte:has(.tipp:hover), .karte:has(.tipp:focus) { z-index: 6; }
+.tipp.links::after { left: 0; transform: translate(0, 6px); }
+.tipp.links:hover::after, .tipp.links:focus::after { transform: translate(0, 0); }
+.tipp.rechts::after { left: auto; right: 0; transform: translate(0, 6px); }
+.tipp.rechts:hover::after, .tipp.rechts:focus::after { transform: translate(0, 0); }

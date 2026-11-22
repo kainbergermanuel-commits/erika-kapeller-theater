@@ -17,7 +17,7 @@ import re, pathlib, datetime
 HIER = pathlib.Path(__file__).parent
 QUELLE = HIER / 'seiten'
 ZIEL = HIER / 'site'
-VERSION = datetime.datetime.now().strftime('%Y%m%d%H%M')
+VERSION = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
 
 MENUE = [
     ('stuecke', 'stuecke.html', 'Stücke', 'I'),
@@ -133,16 +133,21 @@ TICKET_STANDARD = dict(
 )
 
 
-# Fachbegriffe bekommen beim ersten Vorkommen in einem Absatz einen Tooltip
+# Kleine Bühnen-Notizen: augenzwinkernde oder nachdenkliche Zeilen zu passenden Wörtern
+# (erstes Vorkommen in einem Absatz je Seite). Keine Begriffserklärungen.
 GLOSSAR = {
-    'Krimödien': 'Krimi und Komödie in einem: ein Kriminalfall, bei dem mehr gelacht als gezittert wird.',
-    'Krimödie': 'Krimi und Komödie in einem: ein Kriminalfall, bei dem mehr gelacht als gezittert wird.',
-    'Dramödie': 'Drama und Komödie in einem: eine ernste Geschichte mit leichtem, humorvollem Ton.',
-    'Uraufführungen': 'Die allerersten Aufführungen eines Stücks überhaupt.',
-    'Uraufführung': 'Die allererste Aufführung eines Stücks überhaupt.',
-    'Bühnenverlagen': 'Verlage, die Theaterstücke an Bühnen vermitteln und die Aufführungsrechte vergeben.',
-    'Spielleiter:innen': 'Wer eine Theatergruppe anleitet, Proben führt und Regie übernimmt.',
-    'Krimi-Mitspiel-Party': 'Ein Krimiabend, bei dem die Gäste selbst Rollen übernehmen und gemeinsam den Fall lösen.',
+    'Krimödien': 'Wo gemordet wird, darf auch gelacht werden. Meistens sogar zuerst.',
+    'Krimödie': 'Wo gemordet wird, darf auch gelacht werden. Meistens sogar zuerst.',
+    'mörderisch': 'Das Opfer überlebt meistens. Zumindest bis zum Schlussapplaus.',
+    'Dramödie': 'Lachen und Weinen wohnen im Theater Tür an Tür. Hier teilen sie sich ein Zimmer.',
+    'Uraufführungen': 'Der Moment, in dem ein Stück zum ersten Mal Luft holt. Und der ganze Saal mit ihm.',
+    'Uraufführung': 'Der Moment, in dem ein Stück zum ersten Mal Luft holt. Und der ganze Saal mit ihm.',
+    'Plausus': 'Lateinisch für Beifall. Schöner kann ein Verlag kaum heißen.',
+    'Spielleiter:innen': 'Regie führen heißt, das Chaos zu lieben und ihm trotzdem einen Probenplan zu geben.',
+    'Krimi-Mitspiel-Party': 'Dresscode: verdächtig.',
+    'Bühnenerfahrung': '„Die ganze Welt ist Bühne.“ (Shakespeare) Ein bisschen Erfahrung haben Sie also schon.',
+    'Lachen': '„Ein Tag ohne Lachen ist ein verlorener Tag.“ (Charlie Chaplin)',
+    'Proben': 'Die Generalprobe darf schiefgehen. Sagt man jedenfalls, wenn sie schiefgegangen ist.',
 }
 
 
@@ -160,7 +165,7 @@ def tippen(inhalt):
                 continue
             for wort, text in GLOSSAR.items():
                 schluessel = text
-                if schluessel in erledigt:
+                if schluessel in erledigt or len(erledigt) >= 4:
                     continue
                 mm = re.search(r'(?<![\w-])' + re.escape(wort) + r'(?![\w-])', t)
                 if mm:

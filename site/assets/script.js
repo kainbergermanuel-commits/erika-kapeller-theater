@@ -208,3 +208,16 @@
   }, { rootMargin: '0px 0px -12% 0px' });
   marken.forEach(function (m) { io.observe(m); });
 })();
+
+/* Tooltips nie über den Bildschirmrand hinaus */
+(function () {
+  function ausrichten(e) {
+    var t = e.currentTarget, r = t.getBoundingClientRect(), halb = Math.min(140, window.innerWidth * .36) + 16;
+    t.classList.toggle('links', r.left + r.width / 2 - halb < 0);
+    t.classList.toggle('rechts', r.left + r.width / 2 + halb > window.innerWidth);
+  }
+  document.querySelectorAll('.tipp').forEach(function (t) {
+    t.addEventListener('mouseenter', ausrichten);
+    t.addEventListener('focus', ausrichten);
+  });
+})();
