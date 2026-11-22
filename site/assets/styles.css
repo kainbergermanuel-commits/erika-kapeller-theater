@@ -812,3 +812,21 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 .navi a:not(.knopf) { white-space: nowrap; }
 .navi { gap: clamp(16px, 2.2vw, 34px); }
 @media (max-width: 520px) { .marke-zeile { letter-spacing: .18em !important; font-size: 8.5px; } }
+
+/* Premierenleiste: hebt sich, Titel bekommt eine Goldlinie, Pfeil gleitet herein */
+.held-premiere { align-items: center; transition: transform .6s var(--weich), box-shadow .6s var(--weich), border-color .4s; }
+.held-premiere strong {
+  background: linear-gradient(var(--messing), var(--messing)) 0 100% / 0 1px no-repeat;
+  padding-bottom: 2px; transition: background-size .7s var(--weich), color .4s;
+}
+.held-premiere::after {
+  content: '→'; margin-left: 4px; font-size: 17px; color: var(--messing);
+  opacity: 0; transform: translateX(-10px); transition: opacity .4s, transform .6s var(--weich);
+}
+.held-premiere:hover, .held-premiere:focus-visible {
+  transform: translateY(-3px); border-color: rgba(var(--messing-rgb), .55);
+  box-shadow: inset 0 1px 0 var(--glas-licht), 0 0 0 4px rgba(var(--messing-rgb), .08), 0 30px 50px -28px var(--glas-schatten);
+}
+.held-premiere:hover strong, .held-premiere:focus-visible strong { background-size: 100% 1px; }
+.held-premiere:hover::after, .held-premiere:focus-visible::after { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .held-premiere:hover { transform: none; } }
