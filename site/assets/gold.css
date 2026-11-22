@@ -138,7 +138,7 @@
 
 /* Fußzeile */
 :root[data-design="gold"] .fuss { background: linear-gradient(180deg, #eed3a0, #e5c48a); }
-:root[data-design="gold"] .fuss .fuss-gross { font-family: var(--serif); color: rgba(46,31,16,.1); }
+:root[data-design="gold"] .fuss .fuss-gross { font-family: var(--serif); opacity: .6; }
 :root[data-design="gold"] .geisterlicht { box-shadow: 0 0 16px 6px rgba(255,220,150,.9), 0 0 50px 18px rgba(255,200,120,.5); }
 
 /* Handy */
@@ -151,7 +151,7 @@
   :root[data-design="gold"] .held-inhalt > div:first-child { max-width: none; }
   :root[data-design="gold"] .held .etikett { font-size: 10px; }
   :root[data-design="gold"] .held-inhalt { padding-top: 50svh; }
-  :root[data-design="gold"] .kopf .huelle { margin: 0 12px; padding: 0 12px 0 18px; height: 62px; }
+  :root[data-design="gold"] .kopf .huelle { margin: 0 12px; padding: 0 12px 0 18px; height: 62px; background: rgba(255,248,232,.84); }
   :root[data-design="gold"] .mit-kunst { background-size: auto 100%; background-position: 78% 0; }
   :root[data-design="gold"] .mit-kunst::after { background: rgba(247,234,208,.72); }
 }

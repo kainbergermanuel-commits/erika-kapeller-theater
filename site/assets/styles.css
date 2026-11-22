@@ -800,3 +800,15 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 .requisit-textbuch { right: calc(var(--rand) - 20px); top: -150px; width: min(330px, 28vw); transform: rotate(-7deg); }
 .requisit-stuhl { display: block; width: 150px; margin: 46px 0 0 6px; filter: drop-shadow(0 22px 22px rgba(0,0,0,.4)); }
 @media (max-width: 900px) { .requisit-textbuch { width: 170px; top: -90px; } .requisit-stuhl { width: 110px; margin-top: 30px; } }
+
+/* „Vorhang auf.“ in Gold */
+.fuss .fuss-gross {
+  background: linear-gradient(100deg, var(--messing) 0%, var(--messing-hell) 45%, var(--messing) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; opacity: .55;
+}
+
+/* Kopfzeile: längere Markenzeile, Menüpunkte bleiben einzeilig */
+.marke-zeile { letter-spacing: .26em !important; white-space: nowrap; }
+.navi a:not(.knopf) { white-space: nowrap; }
+.navi { gap: clamp(16px, 2.2vw, 34px); }
+@media (max-width: 520px) { .marke-zeile { letter-spacing: .18em !important; font-size: 8.5px; } }

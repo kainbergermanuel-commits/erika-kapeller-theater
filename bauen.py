@@ -50,7 +50,7 @@ KOPF = '''<!doctype html>
   <div class="huelle">
     <a class="marke" href="index.html" aria-label="Erika Kapeller, zur Startseite">
       <span class="marke-name">Erika <em>Kapeller</em></span>
-      <span class="marke-zeile">Autorin · Regie · Bühne</span>
+      <span class="marke-zeile">Autorin · Akteurin · Regisseurin</span>
     </a>
     <nav class="navi" aria-label="Hauptmenü">
 {navi}
@@ -95,7 +95,7 @@ FUSS = '''</main>
     </div>
     <div class="fuss-raster">
       <div>
-        <a class="marke" href="index.html"><span class="marke-name">Erika <em>Kapeller</em></span><span class="marke-zeile">Autorin · Regie · Bühne</span></a>
+        <a class="marke" href="index.html"><span class="marke-name">Erika <em>Kapeller</em></span><span class="marke-zeile">Autorin · Akteurin · Regisseurin</span></a>
         <p style="margin-top:22px">Komödien, Krimödien und ein Praxisbuch für alle, die vom Theaterfieber angesteckt sind. Dazu Workshops für Ensembles, Schulen und Senior:innen.</p>
       </div>
       <div>
