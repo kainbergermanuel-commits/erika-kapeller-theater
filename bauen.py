@@ -99,16 +99,16 @@ FUSS = '''</main>
         <p style="margin-top:22px">Komödien, Krimödien und ein Praxisbuch für alle, die vom Theaterfieber angesteckt sind. Dazu Workshops für Ensembles, Schulen und Senior:innen.</p>
       </div>
       <div>
-        <h4>Werk</h4>
+        <h2 class="fuss-titel">Werk</h2>
         <ul><li><a href="stuecke.html">Stücke</a></li><li><a href="buch.html">Buch</a></li><li><a href="workshops.html">Workshops</a></li></ul>
       </div>
       <div>
-        <h4>Bühne</h4>
+        <h2 class="fuss-titel">Bühne</h2>
         <ul><li><a href="buehne.html">Fotos &amp; Videos</a></li><li><a href="buehne.html#presse">Presse</a></li><li><a href="ueber-mich.html">Über mich</a></li>
           <li><a href="https://www.theatermelange.at" target="_blank" rel="noopener">Theater Melange ↗</a></li></ul>
       </div>
       <div>
-        <h4>Kontakt</h4>
+        <h2 class="fuss-titel">Kontakt</h2>
         <ul><li><a href="mailto:mail@erikakapeller.com">mail@erikakapeller.com</a></li><li><a href="ueber-mich.html#kontakt">Anfrage stellen</a></li></ul>
       </div>
     </div>

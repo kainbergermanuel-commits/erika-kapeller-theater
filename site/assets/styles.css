@@ -15,7 +15,7 @@
   --messing-rgb: 214,167,90;
   --elfenbein: #f3ece2;
   --grau: #a8998a;
-  --grau-dunkel: #6f6359;
+  --grau-dunkel: #8c7f72;
   --linie: rgba(243,236,226,.13);
   --linie-stark: rgba(243,236,226,.26);
   --serif: 'Cormorant Garamond', 'Times New Roman', serif;
@@ -452,7 +452,7 @@ body.navi-offen { overflow: hidden; }
 
 .presse-reihe { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 20px 40px; padding: 30px 0; border-top: 1px solid var(--linie); }
 .presse-reihe h3 { font-size: 26px; }
-.presse-reihe h3 small { display: block; margin-top: 8px; font-family: var(--sans); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--grau); }
+.presse-reihe h3 small { display: block; margin-top: 8px; font-family: var(--sans); font-size: 13px; letter-spacing: .02em; text-transform: none; color: var(--grau); }
 .ausschnitte { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: var(--grau-dunkel) transparent; }
 .ausschnitt { flex: 0 0 auto; width: 150px; cursor: zoom-in; }
 .ausschnitt span.blatt { display: block; height: 190px; overflow: hidden; background: #e9e0d0; border: 1px solid var(--linie); }
@@ -558,7 +558,7 @@ body.navi-offen { overflow: hidden; }
 @media (max-width: 760px) { .fuss-kopf { flex-direction: column; align-items: flex-start; } .fuss-licht { margin-left: 0; } }
 .fuss .fuss-gross { max-width: none; font-family: var(--serif); font-style: italic; font-size: clamp(52px, 10vw, 150px); line-height: .95; color: rgba(243,236,226,.07); letter-spacing: -.02em; margin-bottom: 50px; white-space: nowrap; }
 .fuss-raster { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 40px; }
-.fuss h4 { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--messing); margin-bottom: 18px; }
+.fuss .fuss-titel { font-family: var(--sans); font-size: 11px; line-height: 1.4; text-wrap: nowrap; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--messing); margin-bottom: 18px; }
 .fuss ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
 .fuss a { color: var(--grau); transition: color .3s; }
 .fuss a:hover { color: var(--elfenbein); }
@@ -871,3 +871,6 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 @media (prefers-reduced-motion: reduce) { .faden i::after { animation: none; } .akt-nr.erreicht .welle { animation: none; } }
 /* Kopfzeile darf etwas breiter sein als der Inhalt, damit Menü und Knopf immer Platz haben */
 .kopf .huelle { max-width: calc(var(--breite) + 140px); }
+
+/* Lange Wörter in schmalen Beschriftungen dürfen trennen (lang="de") */
+.zahl span, .fakten b, .fakten span, .stueck-gattung, .etikett { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
