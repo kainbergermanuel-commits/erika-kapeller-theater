@@ -834,3 +834,38 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 #spielplan .akt-kopf.mit-text { padding-right: 0; }
 .masken { width: min(170px, 15vw); top: -150px; right: calc(var(--rand) - 30px); }
 @media (max-width: 900px) { .masken { width: 120px; top: -80px; } }
+
+/* ---------- Roter Faden, verfeinert ----------
+   Linie wächst per Höhe (statt Skalierung), damit an der Spitze ein Licht mitwandern kann;
+   die Punkte leuchten erst, wenn das Licht sie erreicht. */
+.faden i {
+  position: relative; transform: none; height: calc(var(--fortschritt, 0) * 100%);
+  background: linear-gradient(180deg, rgba(var(--messing-rgb), .35) 0%, var(--messing) 30%, var(--messing-hell) 100%);
+}
+.faden i::after {
+  content: ''; position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, #fff7e2 0 22%, var(--messing-hell) 45%, rgba(var(--messing-rgb), 0) 72%);
+  box-shadow: 0 0 14px 5px rgba(var(--messing-rgb), .45), 0 0 40px 14px rgba(var(--messing-rgb), .14);
+  opacity: calc(var(--fortschritt, 0) * 40); /* erst sichtbar, wenn die Linie wächst */
+  animation: flackern 6s ease-in-out infinite;
+}
+.faden i::before {
+  content: ''; position: absolute; left: -1px; right: -1px; bottom: 0; height: 60px;
+  background: linear-gradient(180deg, transparent, rgba(255,240,205,.55)); filter: blur(1px);
+}
+.akt-kopf.sichtbar .akt-nr::after { background: var(--nacht); box-shadow: none; }
+.akt-nr::after { transition: background .5s, box-shadow .8s, transform .6s var(--weich); }
+.akt-kopf .akt-nr.erreicht::after, .akt-nr.erreicht::after {
+  background: var(--messing); transform: scale(1.15);
+  box-shadow: 0 0 0 4px rgba(var(--messing-rgb), .14), 0 0 18px 2px rgba(var(--messing-rgb), .35);
+}
+.akt-nr::before { content: none; }
+.akt-nr .welle {
+  position: absolute; left: -43px; top: 12px; width: 17px; height: 17px; border-radius: 50%;
+  border: 1px solid var(--messing); opacity: 0; pointer-events: none;
+}
+.akt-nr.erreicht .welle { animation: welle 1.6s var(--weich) 1 both; }
+@keyframes welle { 0% { opacity: .9; transform: scale(.6); } 100% { opacity: 0; transform: scale(3.2); } }
+@media (max-width: 1000px) { .akt-nr .welle { display: none; } }
+@media (prefers-reduced-motion: reduce) { .faden i::after { animation: none; } .akt-nr.erreicht .welle { animation: none; } }

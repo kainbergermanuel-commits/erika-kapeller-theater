@@ -184,10 +184,18 @@
     faden.style.height = Math.max(0, unten - oben) + 'px';
     fortschritt();
   }
+  var knoten = Array.prototype.slice.call(document.querySelectorAll('.akt-nr'));
+  knoten.forEach(function (k) { var w = document.createElement('span'); w.className = 'welle'; w.setAttribute('aria-hidden', 'true'); k.appendChild(w); });
   function fortschritt() {
     var r = faden.getBoundingClientRect();
     var p = r.height ? (window.innerHeight * 0.62 - r.top) / r.height : 0;
-    faden.style.setProperty('--fortschritt', Math.max(0, Math.min(1, p)).toFixed(4));
+    p = Math.max(0, Math.min(1, p));
+    faden.style.setProperty('--fortschritt', p.toFixed(4));
+    var spitze = r.top + p * r.height;
+    knoten.forEach(function (k) {
+      var y = k.getBoundingClientRect().top + 20;
+      k.classList.toggle('erreicht', spitze >= y && p > 0);
+    });
   }
   var wartet = false;
   window.addEventListener('scroll', function () {
