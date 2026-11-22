@@ -793,3 +793,10 @@ body.navi-offen .design-wahl { display: none; }
 /* Externe Links im Fließtext */
 a.ext { background: linear-gradient(var(--messing), var(--messing)) left 92% / 100% 1px no-repeat; }
 a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
+
+/* Requisiten: Textbuch bei den Neuerscheinungen, Stuhl beim Kontakt */
+#neu .huelle { position: relative; }
+.requisit { position: absolute; z-index: 1; pointer-events: none; filter: drop-shadow(0 24px 28px rgba(0,0,0,.42)); }
+.requisit-textbuch { right: calc(var(--rand) - 20px); top: -150px; width: min(330px, 28vw); transform: rotate(-7deg); }
+.requisit-stuhl { display: block; width: 150px; margin: 46px 0 0 6px; filter: drop-shadow(0 22px 22px rgba(0,0,0,.4)); }
+@media (max-width: 900px) { .requisit-textbuch { width: 170px; top: -90px; } .requisit-stuhl { width: 110px; margin-top: 30px; } }
