@@ -786,3 +786,10 @@ main { position: relative; }
 .design-wahl i { width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(90deg, #0d0a09 50%, #f0cd8a 50%); border: 1px solid var(--linie-stark); }
 .design-wahl b { font-weight: 500; color: var(--messing); }
 body.navi-offen .design-wahl { display: none; }
+
+/* Kleinere Bildrahmen für ältere, unscharfe Fotos */
+.bildrahmen-klein { max-width: 300px; justify-self: center; }
+@media (max-width: 860px) { .bildrahmen-klein { max-width: 260px; } }
+/* Externe Links im Fließtext */
+a.ext { background: linear-gradient(var(--messing), var(--messing)) left 92% / 100% 1px no-repeat; }
+a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }

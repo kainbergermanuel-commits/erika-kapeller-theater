@@ -104,7 +104,8 @@ FUSS = '''</main>
       </div>
       <div>
         <h4>Bühne</h4>
-        <ul><li><a href="buehne.html">Fotos &amp; Videos</a></li><li><a href="buehne.html#presse">Presse</a></li><li><a href="ueber-mich.html">Über mich</a></li></ul>
+        <ul><li><a href="buehne.html">Fotos &amp; Videos</a></li><li><a href="buehne.html#presse">Presse</a></li><li><a href="ueber-mich.html">Über mich</a></li>
+          <li><a href="https://www.theatermelange.at" target="_blank" rel="noopener">Theater Melange ↗</a></li></ul>
       </div>
       <div>
         <h4>Kontakt</h4>
