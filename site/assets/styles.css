@@ -810,7 +810,7 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 /* Kopfzeile: längere Markenzeile, Menüpunkte bleiben einzeilig */
 .marke-zeile { letter-spacing: .26em !important; white-space: nowrap; }
 .navi a:not(.knopf) { white-space: nowrap; }
-.navi { gap: clamp(16px, 2.2vw, 34px); }
+.navi { gap: clamp(16px, 1.7vw, 26px); }
 @media (max-width: 520px) { .marke-zeile { letter-spacing: .18em !important; font-size: 8.5px; } }
 
 /* Premierenleiste: hebt sich, Titel bekommt eine Goldlinie, Pfeil gleitet herein */
@@ -869,3 +869,5 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 @keyframes welle { 0% { opacity: .9; transform: scale(.6); } 100% { opacity: 0; transform: scale(3.2); } }
 @media (max-width: 1000px) { .akt-nr .welle { display: none; } }
 @media (prefers-reduced-motion: reduce) { .faden i::after { animation: none; } .akt-nr.erreicht .welle { animation: none; } }
+/* Kopfzeile darf etwas breiter sein als der Inhalt, damit Menü und Knopf immer Platz haben */
+.kopf .huelle { max-width: calc(var(--breite) + 140px); }

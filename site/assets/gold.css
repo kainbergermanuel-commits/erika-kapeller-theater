@@ -57,7 +57,7 @@
 :root[data-design="gold"] .kopf,
 :root[data-design="gold"] .kopf.ist-gerollt { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; padding-top: 18px; }
 :root[data-design="gold"] .kopf .huelle {
-  height: 70px; padding: 0 16px 0 26px; max-width: calc(var(--breite) - 2 * var(--rand) + 42px);
+  height: 70px; padding: 0 16px 0 26px; max-width: calc(var(--breite) + 40px); gap: 20px;
   background: var(--glas); backdrop-filter: blur(16px) saturate(130%); -webkit-backdrop-filter: blur(16px) saturate(130%);
   box-shadow: var(--glas-kante);
 }
@@ -156,3 +156,6 @@
   :root[data-design="gold"] .mit-kunst::after { background: rgba(247,234,208,.72); }
 }
 :root[data-design="gold"] .design-wahl { background: rgba(255,248,232,.8); }
+/* Glasleiste: Inhalt bleibt immer innerhalb der Leiste */
+:root[data-design="gold"] .kopf .navi { gap: clamp(14px, 1.8vw, 28px); }
+:root[data-design="gold"] .kopf .navi .knopf { padding: 12px 20px; }
