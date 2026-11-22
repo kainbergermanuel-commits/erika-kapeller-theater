@@ -735,3 +735,5 @@ main { position: relative; }
 .tipp.links:hover::after, .tipp.links:focus::after { transform: translate(0, 0); }
 .tipp.rechts::after { left: auto; right: 0; transform: translate(0, 6px); }
 .tipp.rechts:hover::after, .tipp.rechts:focus::after { transform: translate(0, 0); }
+
+.held-foto { display: none; }
