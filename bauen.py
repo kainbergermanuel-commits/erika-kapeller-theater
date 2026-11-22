@@ -203,7 +203,7 @@ def bauen():
             for k in t:
                 if k in meta:
                     t[k] = meta[k]
-            t["ticket_figur"] = '\n    <img class="ticket-figur" src="assets/img/neu/verbeugung.webp" alt="" aria-hidden="true" width="852" height="728" loading="lazy">' if aktiv == "start" else ""
+            t["ticket_figur"] = '\n    <img class="ticket-figur" src="assets/img/neu/verbeugung.webp" alt="" aria-hidden="true" width="900" height="769" loading="lazy">' if aktiv == "start" else ""
             ticket = TICKET.format(**t)
         html = KOPF.format(
             titel=meta['titel'], beschreibung=meta['beschreibung'], aktiv=aktiv or 'start', version=VERSION,
