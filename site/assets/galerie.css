@@ -19,6 +19,9 @@
   --linie-stark: rgba(27,27,28,.32);
   --serif: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --sans: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --kugel-a: rgba(79,87,148,.16); --kugel-b: rgba(255,255,255,.95);
+  --glas-fl: rgba(255,255,255,.55); --glas-fl-2: rgba(255,255,255,.22); --glas-rand: rgba(255,255,255,.95);
+  --glas-licht: #fff; --glas-schatten: rgba(27,27,28,.26); --mark: rgba(79,87,148,.2); --tipp-fl: rgba(255,255,255,.94);
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
 }
 :root[data-design="galerie"] body {
@@ -73,7 +76,7 @@
   background: radial-gradient(circle, var(--elfenbein) 0 3px, transparent 3.5px);
 }
 :root[data-design="galerie"] .akt + .akt { border-top: 1px dashed var(--linie-stark); }
-:root[data-design="galerie"] .akt-dunkel { background: rgba(255,255,255,.35); }
+:root[data-design="galerie"] { --abschnitt: rgba(255,255,255,.4); }
 :root[data-design="galerie"] .akt-samt { background: linear-gradient(180deg, #e4e5ee, #ecebe8); }
 
 /* Knöpfe: dunkle, ruhige Rechtecke */
@@ -103,12 +106,10 @@
               linear-gradient(0deg, rgba(236,235,232,.7) 0, rgba(236,235,232,0) 90px);
 }
 :root[data-design="galerie"] .licht { display: none; }
-:root[data-design="galerie"] .held-premiere { background: rgba(255,255,255,.55); border: 1px dashed var(--linie-stark); }
 :root[data-design="galerie"] .aktleiste { border-top: 1px dashed var(--linie-stark); }
 :root[data-design="galerie"] .aktleiste a { font-weight: 500; letter-spacing: -.02em; }
 
 /* Karten, Bilder, Listen */
-:root[data-design="galerie"] .karte { background: rgba(255,255,255,.45); }
 :root[data-design="galerie"] .weg-bild::after { background: linear-gradient(180deg, transparent 55%, rgba(236,235,232,.55)); }
 :root[data-design="galerie"] .bildrahmen .rahmen::before { border: 1px dashed var(--linie-stark); }
 :root[data-design="galerie"] .stueck-titel { font-weight: 500; letter-spacing: -.025em; }
@@ -150,10 +151,3 @@
 :root[data-design="galerie"] .design-wahl { background: rgba(255,255,255,.78); font-family: var(--mono); letter-spacing: .04em; text-transform: none; font-size: 12px; }
 body.navi-offen .design-wahl { display: none; }
 
-/* Glas „Schwebend“ im hellen Design */
-:root[data-design="galerie"] .karte,
-:root[data-design="galerie"] .held-premiere {
-  background: rgba(255,255,255,.35); border: 0;
-  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 .5px rgba(27,27,28,.1), 0 40px 80px -40px rgba(27,27,28,.5);
-}
-:root[data-design="galerie"] .karte:hover { box-shadow: inset 0 1px 0 #fff, inset 0 0 0 .5px rgba(var(--messing-rgb), .35), 0 56px 90px -40px rgba(27,27,28,.55); }

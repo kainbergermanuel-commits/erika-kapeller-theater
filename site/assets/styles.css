@@ -603,16 +603,88 @@ body.ohne-vorhang .held .auftritt { animation-delay: .1s; }
   .knopfreihe .knopf { justify-content: center; }
 }
 
-/* ---------- Glas-Paneele „Schwebend“: rahmenlos, nur Lichtkante und tiefer Schatten ---------- */
+/* =========================================================
+   Glas, roter Faden, Tooltips, Hervorhebungen, Tippflächen
+   (Farben je Design über Variablen; Bühne = Grundwerte)
+   ========================================================= */
+:root {
+  --kugel-a: rgba(214,167,90,.13); --kugel-b: rgba(155,51,48,.16);
+  --glas-fl: rgba(255,255,255,.07); --glas-fl-2: rgba(255,255,255,.015); --glas-rand: rgba(255,255,255,.13);
+  --glas-licht: rgba(255,255,255,.3); --glas-schatten: rgba(0,0,0,.7);
+  --mark: rgba(214,167,90,.3); --tipp-fl: rgba(30,24,21,.94); --abschnitt: var(--buehne);
+}
+
+/* Weiches Licht hinter jedem Abschnitt, damit Glas etwas zum Brechen hat */
+.akt { isolation: isolate; }
+.akt::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(460px 340px at 10% 28%, var(--kugel-a), transparent 70%),
+              radial-gradient(560px 400px at 90% 78%, var(--kugel-b), transparent 70%);
+}
+.akt:nth-of-type(even)::before {
+  background: radial-gradient(520px 360px at 88% 22%, var(--kugel-a), transparent 70%),
+              radial-gradient(480px 380px at 14% 82%, var(--kugel-b), transparent 70%);
+}
+
+/* Echte Glaskarten */
 .karte, .held-premiere {
-  background: linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,0) 50%), rgba(20,16,14,.28);
-  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  border: 0; border-radius: 0;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 0 0 .5px rgba(255,255,255,.08), 0 40px 80px -40px rgba(0,0,0,.9);
-  transition: transform .6s var(--weich), box-shadow .6s var(--weich);
+  background: linear-gradient(145deg, var(--glas-fl), var(--glas-fl-2));
+  backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid var(--glas-rand); border-radius: 0;
+  box-shadow: inset 0 1px 0 var(--glas-licht), inset 0 -1px 0 rgba(0,0,0,.06), 0 2px 6px -3px var(--glas-schatten), 0 30px 60px -32px var(--glas-schatten);
+  transition: transform .6s var(--weich), box-shadow .6s var(--weich), border-color .4s;
 }
-.karte:hover {
-  transform: translateY(-6px);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.26), inset 0 0 0 .5px rgba(var(--messing-rgb), .3), 0 56px 90px -40px rgba(0,0,0,.95);
+.karte::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(120deg, rgba(255,255,255,.16), rgba(255,255,255,0) 32%), linear-gradient(300deg, rgba(255,255,255,.05), rgba(255,255,255,0) 30%);
 }
+.karte:hover { transform: translateY(-2px); border-color: rgba(var(--messing-rgb), .45); box-shadow: inset 0 1px 0 var(--glas-licht), 0 4px 10px -4px var(--glas-schatten), 0 44px 80px -36px var(--glas-schatten); }
 @media (prefers-reduced-motion: reduce) { .karte:hover { transform: none; } }
+
+/* Abschnitte gehen weich ineinander über statt harter Linien */
+.akt + .akt { border-top: 0; }
+.akt-dunkel { background: linear-gradient(180deg, transparent 0, var(--abschnitt) 160px, var(--abschnitt) calc(100% - 160px), transparent 100%) !important; }
+
+/* Der rote Faden: eine feine Linie verbindet alle Akte und füllt sich beim Lesen */
+main { position: relative; }
+.faden { position: absolute; z-index: 4; width: 1px; background: var(--linie); pointer-events: none; }
+.faden i { display: block; height: 100%; background: linear-gradient(180deg, var(--messing), var(--messing-hell)); transform-origin: top; transform: scaleY(var(--fortschritt, 0)); }
+.akt-nr { position: relative; }
+.akt-nr::after {
+  content: ''; position: absolute; left: -39px; top: 16px; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--nacht); border: 1px solid var(--messing); transition: background .6s, box-shadow .6s; z-index: 5;
+}
+.akt-kopf.sichtbar .akt-nr::after { background: var(--messing); box-shadow: 0 0 0 4px rgba(var(--messing-rgb), .14); }
+@media (max-width: 1000px) { .faden, .akt-nr::after { display: none; } }
+
+/* Tooltips: Fachbegriffe kurz erklärt */
+.tipp { position: relative; border-bottom: 1px dotted rgba(var(--messing-rgb), .8); cursor: help; outline-offset: 3px; }
+.tipp::after {
+  content: attr(data-tipp); position: absolute; left: 50%; bottom: calc(100% + 12px); z-index: 30;
+  width: max-content; max-width: min(280px, 72vw); padding: 11px 15px 12px;
+  font: 400 13.5px/1.5 var(--sans); letter-spacing: 0; text-transform: none; font-style: normal; text-align: left; color: var(--elfenbein);
+  background: var(--tipp-fl); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glas-rand); box-shadow: inset 0 1px 0 var(--glas-licht), 0 18px 40px -16px var(--glas-schatten);
+  opacity: 0; transform: translate(-50%, 6px); pointer-events: none; transition: opacity .3s, transform .4s var(--weich);
+}
+.tipp::before {
+  content: ''; position: absolute; left: 50%; bottom: calc(100% + 6px); z-index: 31; width: 10px; height: 10px;
+  background: var(--tipp-fl); border-right: 1px solid var(--glas-rand); border-bottom: 1px solid var(--glas-rand);
+  transform: translate(-50%, 6px) rotate(45deg); opacity: 0; transition: opacity .3s, transform .4s var(--weich);
+}
+.tipp:hover::after, .tipp:focus::after { opacity: 1; transform: translate(-50%, 0); }
+.tipp:hover::before, .tipp:focus::before { opacity: 1; transform: translate(-50%, 0) rotate(45deg); }
+
+/* Hervorhebungen: ein Markerstrich zeichnet sich unter das Wesentliche */
+.vorspann strong, .text strong {
+  background-image: linear-gradient(var(--mark), var(--mark)); background-repeat: no-repeat;
+  background-position: 0 88%; background-size: 0% .42em; transition: background-size 1.3s var(--weich) .25s;
+}
+.vorspann strong.gezeichnet, .text strong.gezeichnet { background-size: 100% .42em; }
+@media (prefers-reduced-motion: reduce) { .vorspann strong, .text strong { background-size: 100% .42em; transition: none; } }
+
+/* Tippflächen mindestens 44 px, ohne das Schriftbild zu verändern */
+.verweis, .fuss a, .navi a:not(.knopf) { position: relative; }
+.verweis::before, .fuss a::before { content: ''; position: absolute; inset: -12px -6px; }
+.navi a:not(.knopf)::before { content: ''; position: absolute; inset: -13px -8px; }
+.filter button, .design-wahl, .knopf { min-height: 44px; }

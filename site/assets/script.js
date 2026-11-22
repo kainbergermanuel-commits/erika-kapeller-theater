@@ -165,3 +165,46 @@
     zeigen();
   });
 })();
+
+/* Roter Faden: Linie neben den Akt-Nummern, füllt sich beim Scrollen */
+(function () {
+  var faden = document.querySelector('.faden');
+  if (!faden) return;
+  var main = document.querySelector('main');
+  function lage() {
+    var nr = document.querySelector('.akt-nr');
+    var erster = main.querySelector(':scope > section');
+    if (!nr || !erster) { faden.style.display = 'none'; return; }
+    var mainOben = main.getBoundingClientRect().top + window.scrollY;
+    var letzter = Array.prototype.slice.call(main.querySelectorAll(':scope > section.akt')).pop();
+    var oben = erster.offsetHeight;
+    var unten = letzter ? (letzter.getBoundingClientRect().bottom + window.scrollY - mainOben) : main.offsetHeight;
+    faden.style.left = (nr.getBoundingClientRect().left + window.scrollX - main.getBoundingClientRect().left - 35) + 'px';
+    faden.style.top = oben + 'px';
+    faden.style.height = Math.max(0, unten - oben) + 'px';
+    fortschritt();
+  }
+  function fortschritt() {
+    var r = faden.getBoundingClientRect();
+    var p = r.height ? (window.innerHeight * 0.62 - r.top) / r.height : 0;
+    faden.style.setProperty('--fortschritt', Math.max(0, Math.min(1, p)).toFixed(4));
+  }
+  var wartet = false;
+  window.addEventListener('scroll', function () {
+    if (wartet) return; wartet = true;
+    requestAnimationFrame(function () { fortschritt(); wartet = false; });
+  }, { passive: true });
+  window.addEventListener('resize', lage);
+  window.addEventListener('load', lage);
+  lage();
+})();
+
+/* Hervorhebungen zeichnen sich, sobald sie ins Bild kommen */
+(function () {
+  var marken = document.querySelectorAll('.vorspann strong, .text strong');
+  if (!('IntersectionObserver' in window)) { marken.forEach(function (m) { m.classList.add('gezeichnet'); }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('gezeichnet'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  marken.forEach(function (m) { io.observe(m); });
+})();

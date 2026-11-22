@@ -66,6 +66,7 @@ KOPF = '''<!doctype html>
   <a class="knopf" href="ueber-mich.html#kontakt">Anfrage stellen <span class="pfeil" aria-hidden="true">→</span></a>
 </nav>
 <main id="inhalt">
+<div class="faden" aria-hidden="true"><i></i></div>
 '''
 
 TICKET = '''
@@ -132,6 +133,45 @@ TICKET_STANDARD = dict(
 )
 
 
+# Fachbegriffe bekommen beim ersten Vorkommen in einem Absatz einen Tooltip
+GLOSSAR = {
+    'Krimödien': 'Krimi und Komödie in einem: ein Kriminalfall, bei dem mehr gelacht als gezittert wird.',
+    'Krimödie': 'Krimi und Komödie in einem: ein Kriminalfall, bei dem mehr gelacht als gezittert wird.',
+    'Dramödie': 'Drama und Komödie in einem: eine ernste Geschichte mit leichtem, humorvollem Ton.',
+    'Uraufführungen': 'Die allerersten Aufführungen eines Stücks überhaupt.',
+    'Uraufführung': 'Die allererste Aufführung eines Stücks überhaupt.',
+    'Bühnenverlagen': 'Verlage, die Theaterstücke an Bühnen vermitteln und die Aufführungsrechte vergeben.',
+    'Spielleiter:innen': 'Wer eine Theatergruppe anleitet, Proben führt und Regie übernimmt.',
+    'Krimi-Mitspiel-Party': 'Ein Krimiabend, bei dem die Gäste selbst Rollen übernehmen und gemeinsam den Fall lösen.',
+}
+
+
+def tippen(inhalt):
+    erledigt = set()
+    def absatz(m):
+        teile = re.split(r'(<[^>]+>)', m.group(0))
+        in_link = 0
+        for i, t in enumerate(teile):
+            if t.startswith('<'):
+                if re.match(r'<a\b', t): in_link += 1
+                elif t.startswith('</a'): in_link -= 1
+                continue
+            if in_link:
+                continue
+            for wort, text in GLOSSAR.items():
+                schluessel = text
+                if schluessel in erledigt:
+                    continue
+                mm = re.search(r'(?<![\w-])' + re.escape(wort) + r'(?![\w-])', t)
+                if mm:
+                    t = t[:mm.start()] + f'<span class="tipp" tabindex="0" data-tipp="{text}">{wort}</span>' + t[mm.end():]
+                    erledigt.add(schluessel)
+                    teile[i] = t
+                    break
+        return ''.join(teile)
+    return re.sub(r'<p\b[^>]*>.*?</p>', absatz, inhalt, flags=re.S)
+
+
 def lesen(datei):
     roh = datei.read_text(encoding='utf-8')
     m = re.match(r'\s*<!--(.*?)-->\s*', roh, re.S)
@@ -164,7 +204,7 @@ def bauen():
             navi=navi, vorhang_navi=vorhang_navi,
             start_aktiv=' aria-current="page"' if aktiv == 'start' else '',
             vorhang='<div class="vorhang" aria-hidden="true"><i></i><i></i></div>\n' if aktiv == 'start' else '',
-        ) + inhalt.rstrip() + '\n' + ticket + FUSS.format(jahr=datetime.date.today().year, version=VERSION)
+        ) + tippen(inhalt).rstrip() + '\n' + ticket + FUSS.format(jahr=datetime.date.today().year, version=VERSION)
         (ZIEL / datei.name).write_text(html, encoding='utf-8')
         print('gebaut:', datei.name)
 
