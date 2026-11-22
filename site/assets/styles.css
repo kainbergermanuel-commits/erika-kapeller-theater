@@ -20,7 +20,7 @@
   --linie-stark: rgba(243,236,226,.26);
   --serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
-  --breite: 1120px;
+  --breite: 1040px;
   --rand: clamp(20px, 5vw, 64px);
   --weich: cubic-bezier(.22,1,.36,1);
 }
@@ -830,3 +830,7 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 .held-premiere:hover strong, .held-premiere:focus-visible strong { background-size: 100% 1px; }
 .held-premiere:hover::after, .held-premiere:focus-visible::after { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .held-premiere:hover { transform: none; } }
+/* Schmalere Seitenbreite: Masken kleiner und höher, Überschrift bekommt die volle Breite */
+#spielplan .akt-kopf.mit-text { padding-right: 0; }
+.masken { width: min(170px, 15vw); top: -150px; right: calc(var(--rand) - 30px); }
+@media (max-width: 900px) { .masken { width: 120px; top: -80px; } }
