@@ -20,7 +20,7 @@
   --linie-stark: rgba(243,236,226,.26);
   --serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
-  --breite: 1240px;
+  --breite: 1120px;
   --rand: clamp(20px, 5vw, 64px);
   --weich: cubic-bezier(.22,1,.36,1);
 }
