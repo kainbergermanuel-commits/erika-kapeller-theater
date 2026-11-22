@@ -22,6 +22,7 @@
   --kugel-a: rgba(79,87,148,.16); --kugel-b: rgba(255,255,255,.95);
   --glas-fl: rgba(255,255,255,.55); --glas-fl-2: rgba(255,255,255,.22); --glas-rand: rgba(255,255,255,.95);
   --glas-licht: #fff; --glas-schatten: rgba(27,27,28,.26); --mark: rgba(79,87,148,.2); --tipp-fl: rgba(255,255,255,.94);
+  --foto-schleier: rgba(236,235,232,.8);
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
 }
 :root[data-design="galerie"] body {
