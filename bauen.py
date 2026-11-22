@@ -41,9 +41,8 @@ KOPF = '''<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Caveat:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css?v={version}">
-<link rel="stylesheet" href="assets/galerie.css?v={version}">
 <link rel="stylesheet" href="assets/gold.css?v={version}">
-<script>try{{var d=localStorage.getItem('design');if(d==='galerie'||d==='gold'){{document.documentElement.dataset.design=d;document.write('<link id="galerie-schrift" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">')}}}}catch(e){{}}</script>
+<script>try{{var d=localStorage.getItem('design');if(d==='gold'){{document.documentElement.dataset.design=d;document.write('<link id="galerie-schrift" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap">')}}}}catch(e){{}}</script>
 </head>
 <body class="seite-{aktiv}">
 {vorhang}<a class="sr" href="#inhalt">Zum Inhalt springen</a>

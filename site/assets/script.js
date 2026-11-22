@@ -141,19 +141,19 @@
   if (sel && m) { var w = decodeURIComponent(m[1]); [].forEach.call(sel.options, function (o) { if (o.value === w) sel.value = w; }); }
 })();
 
-/* Design-Umschalter: Bühne (dunkel) → Galerie (hell) → Goldene Stunde */
+/* Design-Umschalter: Bühne (dunkel) ↔ Goldene Stunde */
 (function () {
   var knopf = document.querySelector('.design-wahl');
   if (!knopf) return;
   var root = document.documentElement;
-  var folge = ['buehne', 'galerie', 'gold'];
-  var namen = { buehne: 'Bühne', galerie: 'Galerie', gold: 'Goldene Stunde' };
-  function aktuell() { return root.dataset.design || 'buehne'; }
+  var folge = ['buehne', 'gold'];
+  var namen = { buehne: 'Bühne', gold: 'Goldene Stunde' };
+  function aktuell() { return root.dataset.design === 'gold' ? 'gold' : 'buehne'; }
   function schrift() {
     if (document.getElementById('galerie-schrift')) return;
     var l = document.createElement('link');
     l.id = 'galerie-schrift'; l.rel = 'stylesheet';
-    l.href = 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
+    l.href = 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap';
     document.head.appendChild(l);
   }
   function zeigen() { knopf.querySelector('b').textContent = namen[aktuell()]; }
