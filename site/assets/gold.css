@@ -1,0 +1,137 @@
+/* =========================================================
+   Design „Goldene Stunde“ – warmes Abendgold, Glas, Grotesk mit
+   kursiver Serifen-Zeile. Wirkt nur mit <html data-design="gold">.
+   ========================================================= */
+:root[data-design="gold"] {
+  --nacht: #f7ead0;
+  --buehne: #f2dfb8;
+  --buehne-2: #ecd3a2;
+  --samt: #b07a2a;
+  --samt-hell: #c99645;
+  --messing: #8a5a16;
+  --messing-hell: #b98232;
+  --messing-rgb: 154,106,34;
+  --elfenbein: #2e1f10;
+  --grau: #6b5536;
+  --grau-dunkel: #9a8360;
+  --linie: rgba(46,31,16,.14);
+  --linie-stark: rgba(46,31,16,.3);
+  --sans: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --glas: rgba(255,250,238,.34);
+  --glas-kante: inset 0 1px 0 rgba(255,255,255,.75), inset 0 0 0 1px rgba(255,255,255,.32), 0 30px 60px -36px rgba(110,70,20,.45);
+}
+:root[data-design="gold"] body {
+  font-weight: 400;
+  background: linear-gradient(180deg, #f7ead0 0%, #f3e0b8 60%, #eed3a0 100%) fixed;
+}
+:root[data-design="gold"] body::after { display: none; }
+:root[data-design="gold"] .vorhang { display: none; }
+:root[data-design="gold"] ::selection { color: #fff; }
+:root[data-design="gold"] .licht { display: none; }
+
+/* Schrift: Grotesk, Hervorhebung als kursive Serifen-Zeile */
+:root[data-design="gold"] h1,
+:root[data-design="gold"] h2,
+:root[data-design="gold"] h3,
+:root[data-design="gold"] h4 { font-family: var(--sans); font-weight: 500; letter-spacing: -.035em; line-height: 1.02; }
+:root[data-design="gold"] h1 em,
+:root[data-design="gold"] h2 em,
+:root[data-design="gold"] h3 em { font-family: var(--serif); font-style: italic; font-weight: 500; letter-spacing: -.005em; color: var(--messing); font-size: 1.08em; }
+:root[data-design="gold"] .marke-name { font-family: var(--sans); font-weight: 600; letter-spacing: -.03em; font-size: 22px; }
+:root[data-design="gold"] .marke-name em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--messing); font-size: 1.1em; }
+:root[data-design="gold"] .etikett { letter-spacing: .2em; }
+:root[data-design="gold"] .vorspann { color: var(--grau); }
+:root[data-design="gold"] .akt-nr { font-style: italic; }
+:root[data-design="gold"] .stueck-titel,
+:root[data-design="gold"] .aktleiste a,
+:root[data-design="gold"] .zahl b,
+:root[data-design="gold"] .stueck-jahr { font-family: var(--sans); font-weight: 500; letter-spacing: -.03em; }
+:root[data-design="gold"] .grosszitat blockquote { font-family: var(--sans); font-weight: 500; letter-spacing: -.035em; }
+:root[data-design="gold"] .grosszitat blockquote em { font-family: var(--serif); font-style: italic; color: var(--messing); }
+
+/* Kopfzeile als schwebende Glasleiste */
+:root[data-design="gold"] .kopf,
+:root[data-design="gold"] .kopf.ist-gerollt { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; padding-top: 18px; }
+:root[data-design="gold"] .kopf .huelle {
+  height: 70px; padding: 0 16px 0 26px; max-width: calc(var(--breite) - 2 * var(--rand) + 42px);
+  background: var(--glas); backdrop-filter: blur(16px) saturate(130%); -webkit-backdrop-filter: blur(16px) saturate(130%);
+  box-shadow: var(--glas-kante);
+}
+:root[data-design="gold"] .kopf.ist-gerollt .huelle { height: 62px; background: rgba(255,248,232,.72); }
+:root[data-design="gold"] .vorhang-menue { background: linear-gradient(180deg, #fbf0d8, #efd5a4); }
+:root[data-design="gold"] .vorhang-menue a { font-family: var(--sans); font-weight: 500; letter-spacing: -.03em; }
+:root[data-design="gold"] .vorhang-menue a[aria-current="page"] { font-family: var(--serif); color: var(--messing); }
+
+/* Knöpfe: dunkles Espresso, Rand-Knopf aus Glas */
+:root[data-design="gold"] .knopf { background: var(--elfenbein); border-color: var(--elfenbein); color: #fff4d6; letter-spacing: .04em; text-transform: none; font-size: 15px; font-weight: 500; }
+:root[data-design="gold"] .knopf::before { background: var(--messing); }
+:root[data-design="gold"] .knopf:hover { color: #fff; border-color: var(--messing); }
+:root[data-design="gold"] .knopf-rand { background: rgba(255,250,238,.25); color: var(--elfenbein); border-color: var(--linie-stark); backdrop-filter: blur(8px); }
+:root[data-design="gold"] .knopf-rand::before { background: var(--elfenbein); }
+:root[data-design="gold"] .knopf-rand:hover { color: #fff4d6; }
+
+/* Startbühne im Abendgold: Text mittig, Lampe rechts daneben, Rahmen wie ein Passepartout */
+:root[data-design="gold"] .held-kunst { display: none; }
+:root[data-design="gold"] .held { background: url("img/gold-buehne.svg") 0 62% / 132% auto no-repeat, #f0cd8a; }
+:root[data-design="gold"] .held::before { content: ''; position: absolute; inset: 22px; z-index: 1; border: 1px solid rgba(255,255,255,.55); pointer-events: none; }
+:root[data-design="gold"] .held::after { background: linear-gradient(180deg, rgba(255,240,210,.35), rgba(255,240,210,0) 40%, rgba(120,70,20,.28)); }
+:root[data-design="gold"] .held-inhalt { grid-template-columns: minmax(0, 1fr); text-align: center; justify-items: stretch; padding-top: 150px; }
+:root[data-design="gold"] .held h1 { font-size: clamp(46px, 6vw, 82px); margin: 22px auto 22px; }
+:root[data-design="gold"] .held h1 .zeile { display: inline; }
+:root[data-design="gold"] .held h1 em { display: block; font-size: 1.12em; }
+:root[data-design="gold"] .held .etikett { justify-content: center; }
+:root[data-design="gold"] .held .etikett::before { display: none; }
+:root[data-design="gold"] .held .vorspann { margin: 0 auto 32px; max-width: 560px; color: var(--elfenbein); }
+:root[data-design="gold"] .held .knopfreihe { justify-content: center; }
+:root[data-design="gold"] .held-premiere { justify-self: center; align-self: auto; margin: 46px 0 0; width: auto; text-align: left; display: flex; gap: 18px; align-items: baseline; padding: 14px 22px; }
+:root[data-design="gold"] .held-premiere strong { margin: 0; font-family: var(--sans); font-size: 18px; letter-spacing: -.02em; }
+:root[data-design="gold"] .aktleiste { border-top: 1px solid rgba(255,255,255,.5); }
+:root[data-design="gold"] .aktleiste a { color: var(--elfenbein); }
+
+/* Kopfbilder der Unterseiten im selben Licht */
+:root[data-design="gold"] .kopf-kunst { display: none; }
+:root[data-design="gold"] .mit-kunst { background-position: 72% 74%; background-size: cover; background-repeat: no-repeat; background-color: #f0cd8a; }
+:root[data-design="gold"] .seite-stuecke .mit-kunst { background-image: url("img/gold-kopf-stuecke.svg"); }
+:root[data-design="gold"] .seite-buch .mit-kunst { background-image: url("img/gold-kopf-buch.svg"); }
+:root[data-design="gold"] .seite-workshops .mit-kunst { background-image: url("img/gold-kopf-workshops.svg"); }
+:root[data-design="gold"] .seite-buehne .mit-kunst { background-image: url("img/gold-kopf-buehne.svg"); }
+:root[data-design="gold"] .seite-ueber .mit-kunst { background-image: url("img/gold-kopf-ueber-mich.svg"); }
+:root[data-design="gold"] .mit-kunst::after { background: linear-gradient(90deg, rgba(247,234,208,.92) 0%, rgba(247,234,208,.6) 34%, rgba(247,234,208,0) 60%); }
+:root[data-design="gold"] .buehnenkopf { border-bottom-color: rgba(255,255,255,.5); }
+
+/* Abschnitte, Karten, Glas */
+:root[data-design="gold"] .akt + .akt { border-top-color: rgba(46,31,16,.1); }
+:root[data-design="gold"] .akt-dunkel { background: rgba(255,250,238,.38); }
+:root[data-design="gold"] .akt-samt { background: radial-gradient(70% 70% at 50% 0%, rgba(255,255,255,.6), transparent 70%), #eed3a0; }
+:root[data-design="gold"] .karte,
+:root[data-design="gold"] .held-premiere { background: var(--glas); box-shadow: var(--glas-kante); }
+:root[data-design="gold"] .karte:hover { box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(var(--messing-rgb), .35), 0 50px 80px -40px rgba(110,70,20,.5); }
+:root[data-design="gold"] .weg-bild::after { background: linear-gradient(180deg, transparent 55%, rgba(110,70,20,.35)); }
+:root[data-design="gold"] .zahl b sup { color: var(--messing); }
+:root[data-design="gold"] .filter button[aria-pressed="true"],
+:root[data-design="gold"] .marke-klein.gold { color: #fff4d6; background: var(--elfenbein); border-color: var(--elfenbein); }
+:root[data-design="gold"] .filter button[aria-pressed="true"] span { color: #fff4d6; }
+:root[data-design="gold"] .bildrahmen .rahmen::before { border-color: rgba(var(--messing-rgb), .4); }
+
+/* Eintrittskarte als goldenes Papier */
+:root[data-design="gold"] .ticket { background: linear-gradient(120deg, #fff4d6, #f0cd8a); box-shadow: 0 40px 70px -40px rgba(110,70,20,.5); }
+:root[data-design="gold"] .ticket::before { border-color: rgba(46,31,16,.3); }
+:root[data-design="gold"] .ticket p { color: var(--grau); }
+:root[data-design="gold"] .ticket-abriss { border-left-color: rgba(46,31,16,.3); }
+
+/* Fußzeile */
+:root[data-design="gold"] .fuss { background: linear-gradient(180deg, #eed3a0, #e5c48a); }
+:root[data-design="gold"] .fuss .fuss-gross { font-family: var(--serif); color: rgba(46,31,16,.1); }
+:root[data-design="gold"] .geisterlicht { box-shadow: 0 0 16px 6px rgba(255,220,150,.9), 0 0 50px 18px rgba(255,200,120,.5); }
+
+/* Handy */
+@media (max-width: 920px) {
+  :root[data-design="gold"] .held { background: url("img/gold-buehne.svg") 74% 0 / auto 64svh no-repeat, linear-gradient(180deg, #f0cd8a 0 60svh, var(--nacht) 74svh); }
+  :root[data-design="gold"] .held::after { background: linear-gradient(180deg, rgba(240,205,138,0) 40svh, var(--nacht) 66svh); }
+  :root[data-design="gold"] .held::before { display: none; }
+  :root[data-design="gold"] .held-inhalt { padding-top: 54svh; }
+  :root[data-design="gold"] .kopf .huelle { margin: 0 12px; padding: 0 12px 0 18px; height: 62px; }
+  :root[data-design="gold"] .mit-kunst { background-size: auto 100%; background-position: 78% 0; }
+  :root[data-design="gold"] .mit-kunst::after { background: rgba(247,234,208,.72); }
+}
+:root[data-design="gold"] .design-wahl { background: rgba(255,248,232,.8); }

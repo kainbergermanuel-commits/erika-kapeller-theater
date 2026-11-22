@@ -141,11 +141,14 @@
   if (sel && m) { var w = decodeURIComponent(m[1]); [].forEach.call(sel.options, function (o) { if (o.value === w) sel.value = w; }); }
 })();
 
-/* Design-Umschalter: Bühne (dunkel) / Galerie (hell) */
+/* Design-Umschalter: Bühne (dunkel) → Galerie (hell) → Goldene Stunde */
 (function () {
   var knopf = document.querySelector('.design-wahl');
   if (!knopf) return;
   var root = document.documentElement;
+  var folge = ['buehne', 'galerie', 'gold'];
+  var namen = { buehne: 'Bühne', galerie: 'Galerie', gold: 'Goldene Stunde' };
+  function aktuell() { return root.dataset.design || 'buehne'; }
   function schrift() {
     if (document.getElementById('galerie-schrift')) return;
     var l = document.createElement('link');
@@ -153,11 +156,11 @@
     l.href = 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
     document.head.appendChild(l);
   }
-  function zeigen() { knopf.querySelector('b').textContent = root.dataset.design === 'galerie' ? 'Galerie' : 'Bühne'; }
+  function zeigen() { knopf.querySelector('b').textContent = namen[aktuell()]; }
   zeigen();
   knopf.addEventListener('click', function () {
-    var neu = root.dataset.design === 'galerie' ? 'buehne' : 'galerie';
-    if (neu === 'galerie') { schrift(); root.dataset.design = 'galerie'; } else { delete root.dataset.design; }
+    var neu = folge[(folge.indexOf(aktuell()) + 1) % folge.length];
+    if (neu === 'buehne') { delete root.dataset.design; } else { schrift(); root.dataset.design = neu; }
     try { localStorage.setItem('design', neu); } catch (e) {}
     zeigen();
   });

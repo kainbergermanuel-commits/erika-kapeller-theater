@@ -42,7 +42,8 @@ KOPF = '''<!doctype html>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css?v={version}">
 <link rel="stylesheet" href="assets/galerie.css?v={version}">
-<script>try{{if(localStorage.getItem('design')==='galerie'){{document.documentElement.dataset.design='galerie';document.write('<link id="galerie-schrift" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">')}}}}catch(e){{}}</script>
+<link rel="stylesheet" href="assets/gold.css?v={version}">
+<script>try{{var d=localStorage.getItem('design');if(d==='galerie'||d==='gold'){{document.documentElement.dataset.design=d;document.write('<link id="galerie-schrift" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">')}}}}catch(e){{}}</script>
 </head>
 <body class="seite-{aktiv}">
 {vorhang}<a class="sr" href="#inhalt">Zum Inhalt springen</a>
