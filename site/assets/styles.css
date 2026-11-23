@@ -960,3 +960,19 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 .requisit-mass { position: absolute; z-index: 3; left: -56px; bottom: -34px; width: 210px; transform: rotate(-9deg);
   pointer-events: none; filter: drop-shadow(0 22px 24px rgba(0,0,0,.45)); }
 @media (max-width: 860px) { .requisit-mass { width: 160px; left: -24px; bottom: 30px; } }
+
+/* Requisiten: Lupe (Krimi-Party), Füllhalter (Neuauflage), Koffer (Vita) */
+.requisit-lupe { position: absolute; z-index: 3; right: -105px; bottom: 34px; width: 180px; transform: rotate(14deg);
+  pointer-events: none; filter: drop-shadow(0 20px 22px rgba(0,0,0,.45)); }
+.requisit-fueller { grid-column: 2; width: min(270px, 60%); margin-top: 6px; transform: rotate(-6deg);
+  pointer-events: none; filter: drop-shadow(0 20px 22px rgba(0,0,0,.4)); }
+.akt-kopf.mit-koffer { position: relative; padding-right: 170px; }
+.requisit-koffer { position: absolute; right: 0; top: -10px; width: 165px; transform: rotate(4deg);
+  pointer-events: none; filter: drop-shadow(0 22px 24px rgba(0,0,0,.45)); }
+@media (max-width: 1000px) { .requisit-fueller { grid-column: 1; } }
+@media (max-width: 860px) {
+  .requisit-lupe { width: 130px; right: -30px; bottom: -24px; }
+  .akt-kopf.mit-koffer { padding-right: 0; padding-top: 0; }
+  .requisit-koffer { position: relative; top: 0; width: 150px; margin-bottom: 10px; }
+  .requisit-fueller { width: 190px; }
+}
