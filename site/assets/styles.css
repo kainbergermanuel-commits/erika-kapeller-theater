@@ -942,3 +942,15 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 .navi a:not(.knopf)::before { z-index: -1; }
 .navi a:not(.knopf):hover, .navi a:not(.knopf):focus-visible { color: var(--messing-hell); text-shadow: 0 0 14px rgba(var(--messing-rgb), .45); }
 @media (prefers-reduced-motion: reduce) { .navi a:not(.knopf)::before { transition: opacity .2s; transform: none; } }
+
+/* Menü: statt Lichtfleck pro Punkt ein einziges weiches Licht, das dem Mauszeiger folgt */
+.navi a:not(.knopf)::before { background: none !important; opacity: 1 !important; transform: none !important; }
+.navi a:not(.knopf):hover, .navi a:not(.knopf):focus-visible { text-shadow: none !important; }
+.navi { position: relative; isolation: isolate; --lx: 50%; }
+.navi::before {
+  content: ''; position: absolute; z-index: -1; inset: -14px -24px; pointer-events: none; border-radius: 999px;
+  background: radial-gradient(190px 74px at var(--lx) 50%, rgba(var(--messing-rgb), .19), rgba(var(--messing-rgb), .06) 55%, transparent 80%);
+  opacity: 0; transition: opacity .9s var(--weich);
+}
+.navi:hover::before { opacity: 1; }
+@media (hover: none) { .navi::before { display: none; } }

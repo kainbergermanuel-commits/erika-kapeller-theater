@@ -179,3 +179,6 @@
 /* Menü-Licht in Goldene Stunde: warmes Weißlicht statt Messing */
 :root[data-design="gold"] .navi a:not(.knopf)::before { background: radial-gradient(60% 75% at 50% 45%, rgba(255,252,244,.9), rgba(230,170,80,.28) 45%, transparent 78%); }
 :root[data-design="gold"] .navi a:not(.knopf):hover, :root[data-design="gold"] .navi a:not(.knopf):focus-visible { color: var(--messing); text-shadow: 0 0 12px rgba(255,240,210,.9); }
+/* Menü-Licht in Goldene Stunde: ein sanftes, warmes Aufhellen der Glasleiste */
+:root[data-design="gold"] .navi::before { background: radial-gradient(200px 80px at var(--lx) 50%, rgba(255,253,246,.7), rgba(255,240,210,.25) 50%, transparent 80%); }
+:root[data-design="gold"] .navi a:not(.knopf):hover, :root[data-design="gold"] .navi a:not(.knopf):focus-visible { color: var(--elfenbein); }
