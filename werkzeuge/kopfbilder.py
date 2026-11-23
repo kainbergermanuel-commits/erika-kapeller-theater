@@ -20,8 +20,8 @@ def basis(inhalt, staub_y=520):
 <filter id="weich" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
 <filter id="hauch" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter>
 </defs>
-<style>.flimmern{{animation:flimmern 8s ease-in-out infinite}}@keyframes flimmern{{0%,100%{{opacity:1}}40%{{opacity:.88}}44%{{opacity:.96}}48%{{opacity:.84}}}}
-.staub circle{{fill:#f0d199;animation:schweben linear infinite}}@keyframes schweben{{0%{{transform:translate(0,0);opacity:0}}15%{{opacity:.7}}85%{{opacity:.5}}100%{{transform:translate(14px,-140px);opacity:0}}}}
+<style>.flimmern{{animation:flimmern 8s ease-in-out 2}}@keyframes flimmern{{0%,100%{{opacity:1}}40%{{opacity:.88}}44%{{opacity:.96}}48%{{opacity:.84}}}}
+.staub circle{{fill:#f0d199;animation:schweben linear 2}}@keyframes schweben{{0%{{transform:translate(0,0);opacity:0}}15%{{opacity:.7}}85%{{opacity:.5}}100%{{transform:translate(14px,-140px);opacity:0}}}}
 @media (prefers-reduced-motion:reduce){{.flimmern,.staub circle{{animation:none}}}}</style>''',
     f'<rect width="{W}" height="{H}" fill="url(#wand)"/>',
     f'<polygon points="-200,{F} 1800,{F} 2300,{H} -700,{H}" fill="url(#boden)"/>']

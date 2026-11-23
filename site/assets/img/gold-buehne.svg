@@ -34,9 +34,9 @@
 <filter id="hauch" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
 </defs>
 <style>
- .flimmern{animation:flimmern 7s ease-in-out infinite}
+ .flimmern{animation:flimmern 7s ease-in-out 2}
  @keyframes flimmern{0%,100%{opacity:1}38%{opacity:.9}41%{opacity:.97}44%{opacity:.86}60%{opacity:.95}}
- .staub circle{fill:#f0d199;animation:schweben linear infinite}
+ .staub circle{fill:#f0d199;animation:schweben linear 2}
  @keyframes schweben{0%{transform:translate(0,0);opacity:0}15%{opacity:.8}85%{opacity:.6}100%{transform:translate(18px,-150px);opacity:0}}
  @media (prefers-reduced-motion:reduce){.flimmern,.staub circle{animation:none}}
 </style>
