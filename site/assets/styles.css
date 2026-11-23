@@ -895,3 +895,14 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 .entfalt-spalte a:hover img { opacity: 1; transform: scale(1.03); }
 .entfalt-titel { position: absolute; z-index: 3; left: 50%; bottom: 7vh; transform: translateX(-50%); pointer-events: none;
   font: italic 500 clamp(20px, 2vw, 28px)/1.2 var(--serif); color: #f3ece2; text-shadow: 0 2px 20px rgba(0,0,0,.8); white-space: nowrap; transition: opacity .6s; }
+
+/* Knöpfe: beim Überfahren ein weicher Goldverlauf statt Vollfarbe, mit leisem Glanz */
+.knopf::before { background: linear-gradient(115deg, #f3ece2 0%, #f6dfae 45%, #e2b56a 100%); }
+.knopf-rand::before { background: linear-gradient(115deg, #8f5f22 0%, #d6a75a 50%, #f0d199 100%); }
+.knopf::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.35) 50%, transparent 65%) 150% 0 / 250% 100% no-repeat;
+  transition: opacity .3s, background-position 1s var(--weich);
+}
+.knopf:hover::after, .knopf:focus-visible::after { opacity: 1; background-position: -50% 0; }
+.knopf:hover, .knopf:focus-visible { box-shadow: 0 10px 28px -14px rgba(var(--messing-rgb), .7); }

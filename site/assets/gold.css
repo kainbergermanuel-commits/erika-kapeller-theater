@@ -159,3 +159,6 @@
 /* Glasleiste: Inhalt bleibt immer innerhalb der Leiste */
 :root[data-design="gold"] .kopf .navi { gap: clamp(14px, 1.8vw, 28px); }
 :root[data-design="gold"] .kopf .navi .knopf { padding: 12px 20px; }
+/* Knöpfe: Goldverlauf beim Überfahren */
+:root[data-design="gold"] .knopf::before { background: linear-gradient(115deg, #6b440f 0%, #9a6a22 50%, #c99645 100%); }
+:root[data-design="gold"] .knopf-rand::before { background: linear-gradient(115deg, #2e1f10 0%, #5a3a1a 55%, #7a4f12 100%); }
