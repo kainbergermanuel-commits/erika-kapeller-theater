@@ -914,3 +914,20 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 /* Die entfaltete Galerie liegt über dem roten Faden: dieser Abschnitt bildet keine eigene Ebene */
 .akt:has(.entfalt) { isolation: auto; }
 .akt:has(.entfalt)::before { display: none; }
+
+/* ---------- „Die Menschen auf der Bühne“: Backstage-Pinnwand ---------- */
+.pinnwand { position: relative; padding: 46px 38px 42px; border-radius: 4px;
+  background: radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,.06), transparent 60%), repeating-linear-gradient(45deg, rgba(255,255,255,.015) 0 2px, transparent 2px 6px), #2a1e17;
+  box-shadow: inset 0 0 0 10px #1a120d, inset 0 0 0 11px rgba(var(--messing-rgb), .4), 0 40px 80px -40px rgba(0,0,0,.7); }
+.pinnwand-innen { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 30px; }
+.pinnwand a { position: relative; display: block; background: #f6efe2; padding: 9px 9px 26px; cursor: zoom-in;
+  box-shadow: 0 12px 22px -10px rgba(0,0,0,.6); transform: rotate(var(--r, 0deg)); transition: transform .6s var(--weich), box-shadow .6s var(--weich); }
+.pinnwand a::before { content: ''; position: absolute; left: 50%; top: -7px; width: 14px; height: 14px; border-radius: 50%; transform: translateX(-50%); z-index: 1;
+  background: radial-gradient(circle at 35% 30%, #fff3c4, #d6a75a 45%, #7a5414); box-shadow: 0 3px 4px rgba(0,0,0,.45); }
+.pinnwand img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+  filter: sepia(.5) saturate(.85) brightness(.95); transition: filter .6s var(--weich); }
+.pinnwand a:hover, .pinnwand a:focus-visible { transform: rotate(0deg) translateY(-4px) scale(1.05); z-index: 2; box-shadow: 0 26px 40px -16px rgba(0,0,0,.65); }
+.pinnwand a:hover img, .pinnwand a:focus-visible img { filter: none; }
+@media (max-width: 900px) { .pinnwand-innen { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 20px; } }
+@media (max-width: 600px) { .pinnwand { padding: 32px 18px 28px; } .pinnwand-innen { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 14px; } .pinnwand a { padding: 6px 6px 16px; } }
+@media (prefers-reduced-motion: reduce) { .pinnwand a { transition: none; } }
