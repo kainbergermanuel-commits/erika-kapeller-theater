@@ -976,3 +976,4 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
   .requisit-koffer { position: relative; top: 0; width: 150px; margin-bottom: 10px; }
   .requisit-fueller { width: 190px; }
 }
+.requisit-zeitungen { transform: rotate(4deg); width: min(240px, 55%); }
