@@ -229,3 +229,53 @@
     t.addEventListener('focus', ausrichten);
   });
 })();
+
+/* „So sieht Spielfreude aus“: die Galerie entfaltet sich beim Scrollen in 3D
+   (nur am Computer und ohne Wunsch nach reduzierter Bewegung; sonst bleibt die normale Galerie) */
+(function () {
+  var galerie = document.querySelector('.galerie.entfaltbar');
+  if (!galerie) return;
+  if (window.innerWidth < 900 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var links = Array.prototype.slice.call(galerie.querySelectorAll('a'));
+  if (links.length < 8) return;
+
+  var entfalt = document.createElement('div'); entfalt.className = 'entfalt';
+  entfalt.innerHTML = '<div class="entfalt-buehne"><div class="entfalt-rahmen"><div class="entfalt-perspektive"><div class="entfalt-matrix"></div></div>' +
+    '<p class="entfalt-titel">Weiterscrollen, der Vorhang geht auf</p></div></div>';
+  var matrix = entfalt.querySelector('.entfalt-matrix');
+  var spalten = [];
+  for (var s = 0; s < 4; s++) { var sp = document.createElement('div'); sp.className = 'entfalt-spalte'; matrix.appendChild(sp); spalten.push(sp); }
+  // Originale (mit Lichtkasten) verteilen, danach Kopien zum Auffüllen; Kopien leiten den Klick ans Original weiter
+  links.forEach(function (a, i) { a.querySelector('img').loading = 'eager'; spalten[i % 4].appendChild(a); });
+  links.forEach(function (a, i) {
+    var k = a.cloneNode(true); k.removeAttribute('data-licht'); k.setAttribute('aria-hidden', 'true'); k.tabIndex = -1;
+    k.addEventListener('click', function (e) { e.preventDefault(); a.click(); });
+    spalten[(i + 2) % 4].appendChild(k);
+  });
+  galerie.replaceWith(entfalt);
+
+  var rahmen = entfalt.querySelector('.entfalt-rahmen'), titel = entfalt.querySelector('.entfalt-titel');
+  var ziel = 0, ist = 0, laeuft = false;
+  function mix(a, b, t) { return a + (b - a) * t; }
+  function abschnitt(p, a, b) { return Math.max(0, Math.min(1, (p - a) / (b - a))); }
+  function zeichnen() {
+    ist += (ziel - ist) * 0.12;
+    var b = abschnitt(ist, 0, 0.15), m = abschnitt(ist, 0.15, 1);
+    rahmen.style.width = mix(90, 100, b) + 'vw';
+    rahmen.style.height = mix(80, 100, b) + 'vh';
+    rahmen.style.borderRadius = mix(32, 0, b) + 'px';
+    matrix.style.transform = 'translateZ(' + mix(-800, 0, m) + 'px) rotateX(' + mix(25, 4, m) + 'deg) rotateY(' + mix(-45, -8, m) + 'deg) rotateZ(' + mix(15, 2, m) + 'deg)';
+    var wege = [[0, -40], [-40, 10], [0, -40], [-30, 20]];
+    spalten.forEach(function (sp, i) { sp.style.transform = 'translateY(' + mix(wege[i][0], wege[i][1], m) + '%)'; });
+    titel.style.opacity = 1 - abschnitt(ist, 0, 0.12);
+    if (Math.abs(ziel - ist) > 0.0005) requestAnimationFrame(zeichnen); else laeuft = false;
+  }
+  function messen() {
+    var r = entfalt.getBoundingClientRect(), weg = r.height - window.innerHeight;
+    ziel = weg > 0 ? Math.max(0, Math.min(1, -r.top / weg)) : 0;
+    if (!laeuft) { laeuft = true; requestAnimationFrame(zeichnen); }
+  }
+  window.addEventListener('scroll', messen, { passive: true });
+  window.addEventListener('resize', messen);
+  messen(); ist = ziel; zeichnen();
+})();
