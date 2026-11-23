@@ -874,3 +874,5 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 
 /* Lange Wörter in schmalen Beschriftungen dürfen trennen (lang="de") */
 .zahl span, .fakten b, .fakten span, .stueck-gattung, .etikett { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+/* Goldschrift per background-clip schneidet an der Elementkante ab: Platz für Unterlängen (g, f) */
+.fuss .fuss-gross { padding: .04em .06em .2em 0; margin-bottom: -.16em; }
