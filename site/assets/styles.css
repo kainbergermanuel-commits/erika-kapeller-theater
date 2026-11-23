@@ -931,3 +931,14 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 @media (max-width: 900px) { .pinnwand-innen { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 20px; } }
 @media (max-width: 600px) { .pinnwand { padding: 32px 18px 28px; } .pinnwand-innen { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 14px; } .pinnwand a { padding: 6px 6px 16px; } }
 @media (prefers-reduced-motion: reduce) { .pinnwand a { transition: none; } }
+
+/* Menü: beim Überfahren fällt ein weicher Lichtkegel auf den Menüpunkt */
+.navi a:not(.knopf)::before {
+  background: radial-gradient(60% 75% at 50% 45%, rgba(var(--messing-rgb), .22), rgba(var(--messing-rgb), .08) 45%, transparent 75%);
+  opacity: 0; transform: scale(.7); transition: opacity .5s var(--weich), transform .7s var(--weich); border-radius: 999px; pointer-events: auto;
+}
+.navi a:not(.knopf):hover::before, .navi a:not(.knopf):focus-visible::before { opacity: 1; transform: scale(1); }
+.navi a:not(.knopf) { transition: color .4s, text-shadow .5s; isolation: isolate; }
+.navi a:not(.knopf)::before { z-index: -1; }
+.navi a:not(.knopf):hover, .navi a:not(.knopf):focus-visible { color: var(--messing-hell); text-shadow: 0 0 14px rgba(var(--messing-rgb), .45); }
+@media (prefers-reduced-motion: reduce) { .navi a:not(.knopf)::before { transition: opacity .2s; transform: none; } }
