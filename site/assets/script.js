@@ -235,7 +235,8 @@
 (function () {
   var galerie = document.querySelector('.galerie.entfaltbar');
   if (!galerie) return;
-  if (window.innerWidth < 900 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.innerWidth < 760) return;
+  var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var links = Array.prototype.slice.call(galerie.querySelectorAll('a'));
   if (links.length < 8) return;
 
@@ -274,6 +275,12 @@
     var r = entfalt.getBoundingClientRect(), weg = r.height - window.innerHeight;
     ziel = weg > 0 ? Math.max(0, Math.min(1, -r.top / weg)) : 0;
     if (!laeuft) { laeuft = true; requestAnimationFrame(zeichnen); }
+  }
+  if (ruhig) {
+    // Reduzierte Bewegung: ruhende, leicht gekippte Fotowand ohne Scroll-Animation
+    entfalt.classList.add('ruhig'); ist = ziel = 0.75; zeichnen(); titel.style.opacity = 0;
+    rahmen.style.width = '100vw'; rahmen.style.height = '100vh'; rahmen.style.borderRadius = '0';
+    return;
   }
   window.addEventListener('scroll', messen, { passive: true });
   window.addEventListener('resize', messen);
