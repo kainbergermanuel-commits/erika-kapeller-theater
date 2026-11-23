@@ -37,6 +37,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+html { overflow-x: clip; }
 /* Filmkorn über allem, ganz leise */
 body::after {
   content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .07;
@@ -957,9 +958,9 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 
 /* Requisit „Maßband mit Schere“ liegt über der unteren Ecke des Fotos bei „Nach Maß“ */
 .bildrahmen.mit-requisit { position: relative; }
-.requisit-mass { position: absolute; z-index: 3; left: -56px; bottom: -34px; width: 210px; transform: rotate(-9deg);
+.requisit-mass { position: absolute; z-index: 3; left: -56px; bottom: 52px; width: 210px; transform: rotate(-9deg);
   pointer-events: none; filter: drop-shadow(0 22px 24px rgba(0,0,0,.45)); }
-@media (max-width: 860px) { .requisit-mass { width: 160px; left: -24px; bottom: 30px; } }
+@media (max-width: 860px) { .requisit-mass { width: 150px; left: -18px; bottom: 56px; } }
 
 /* Requisiten: Lupe (Krimi-Party), Füllhalter (Neuauflage), Koffer (Vita) */
 .requisit-lupe { position: absolute; z-index: 3; right: -105px; bottom: 34px; width: 180px; transform: rotate(14deg);
@@ -971,7 +972,7 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
   pointer-events: none; filter: drop-shadow(0 22px 24px rgba(0,0,0,.45)); }
 @media (max-width: 1000px) { .requisit-fueller { grid-column: 1; } }
 @media (max-width: 860px) {
-  .requisit-lupe { width: 130px; right: -30px; bottom: -24px; }
+  .requisit-lupe { width: 120px; right: -26px; bottom: 58px; }
   .akt-kopf.mit-koffer { padding-right: 0; padding-top: 0; }
   .requisit-koffer { position: relative; top: 0; width: 150px; margin-bottom: 10px; }
   .requisit-fueller { width: 190px; }
