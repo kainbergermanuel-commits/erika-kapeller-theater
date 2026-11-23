@@ -954,3 +954,9 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 }
 .navi:hover::before { opacity: 1; }
 @media (hover: none) { .navi::before { display: none; } }
+
+/* Requisit „Maßband mit Schere“ liegt über der unteren Ecke des Fotos bei „Nach Maß“ */
+.bildrahmen.mit-requisit { position: relative; }
+.requisit-mass { position: absolute; z-index: 3; left: -56px; bottom: -34px; width: 210px; transform: rotate(-9deg);
+  pointer-events: none; filter: drop-shadow(0 22px 24px rgba(0,0,0,.45)); }
+@media (max-width: 860px) { .requisit-mass { width: 160px; left: -24px; bottom: 30px; } }
