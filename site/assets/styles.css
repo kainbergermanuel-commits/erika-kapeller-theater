@@ -911,3 +911,6 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 .entfalt.ruhig { height: 100vh; }
 .entfalt.ruhig .entfalt-buehne { position: relative; }
 @media (max-width: 1100px) { .entfalt-spalte { min-width: 160px; } .entfalt-spalte a { height: clamp(200px, 26vh, 320px); } }
+/* Die entfaltete Galerie liegt über dem roten Faden: dieser Abschnitt bildet keine eigene Ebene */
+.akt:has(.entfalt) { isolation: auto; }
+.akt:has(.entfalt)::before { display: none; }
