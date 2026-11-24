@@ -35,7 +35,6 @@ KOPF = '''<!doctype html>
 <title>{titel}</title>
 <meta name="description" content="{beschreibung}">
 <meta name="theme-color" content="#0d0a09">
-<meta name="robots" content="noindex, nofollow"><!-- Entwurf: vor dem Livegang entfernen -->
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
