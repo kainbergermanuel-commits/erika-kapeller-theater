@@ -37,7 +37,6 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-html { overflow-x: clip; }
 /* Filmkorn über allem, ganz leise */
 body::after {
   content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .07;
