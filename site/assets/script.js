@@ -287,23 +287,3 @@
   messen(); ist = ziel; zeichnen();
 })();
 
-/* Menü-Licht folgt dem Mauszeiger, weich nachgezogen */
-(function () {
-  var navi = document.querySelector('.kopf .navi');
-  if (!navi || !window.matchMedia('(hover: hover)').matches) return;
-  var ziel = 0, ist = 0, laeuft = false;
-  function schritt() {
-    ist += (ziel - ist) * 0.14;
-    navi.style.setProperty('--lx', ist.toFixed(1) + 'px');
-    if (Math.abs(ziel - ist) > 0.5) requestAnimationFrame(schritt); else laeuft = false;
-  }
-  navi.addEventListener('mousemove', function (e) {
-    var r = navi.getBoundingClientRect();
-    ziel = e.clientX - r.left + 24;
-    if (!laeuft) { laeuft = true; requestAnimationFrame(schritt); }
-  });
-  navi.addEventListener('mouseenter', function (e) {
-    var r = navi.getBoundingClientRect(); ist = ziel = e.clientX - r.left + 24;
-    navi.style.setProperty('--lx', ist + 'px');
-  });
-})();
