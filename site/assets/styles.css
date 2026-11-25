@@ -957,9 +957,10 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
 
 /* Requisit „Maßband mit Schere“ liegt über der unteren Ecke des Fotos bei „Nach Maß“ */
 .bildrahmen.mit-requisit { position: relative; }
-.requisit-mass { position: absolute; z-index: 3; left: -56px; bottom: 52px; width: 210px; transform: rotate(-9deg);
+.requisit-mass { position: absolute; z-index: 3; left: -40px; bottom: 44px; width: 140px; transform: rotate(-9deg);
   pointer-events: none; filter: drop-shadow(0 22px 24px rgba(0,0,0,.45)); }
-@media (max-width: 860px) { .requisit-mass { width: 150px; left: -18px; bottom: 56px; } }
+.bildrahmen img.requisit-mass { width: 240px; left: -48px; bottom: 28px; }
+@media (max-width: 860px) { .bildrahmen img.requisit-mass { width: 150px; left: -16px; bottom: 44px; } }
 
 /* Requisiten: Lupe (Krimi-Party), Füllhalter (Neuauflage), Koffer (Vita) */
 .requisit-lupe { position: absolute; z-index: 3; right: -150px; bottom: -6px; width: 170px; transform: rotate(14deg);
