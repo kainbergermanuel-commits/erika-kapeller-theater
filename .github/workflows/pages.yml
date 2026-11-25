@@ -15,16 +15,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  # Erst bauen und hochladen, dann in einem eigenen Job veröffentlichen
+  # (im selben Job fand deploy-pages das Paket manchmal noch nicht)
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
           path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
