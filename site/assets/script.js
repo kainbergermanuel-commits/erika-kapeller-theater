@@ -190,12 +190,11 @@
     var r = faden.getBoundingClientRect();
     var p = r.height ? (window.innerHeight * 0.62 - r.top) / r.height : 0;
     p = Math.max(0, Math.min(1, p));
-    faden.style.setProperty('--fortschritt', p.toFixed(4));
     var spitze = r.top + p * r.height;
-    knoten.forEach(function (k) {
-      var y = k.getBoundingClientRect().top + 20;
-      k.classList.toggle('erreicht', spitze >= y && p > 0);
-    });
+    // erst alles messen, dann schreiben (sonst rechnet der Browser bei jedem Scrollbild das Layout neu)
+    var lagen = knoten.map(function (k) { return k.getBoundingClientRect().top + 20; });
+    faden.style.setProperty('--fortschritt', p.toFixed(4));
+    knoten.forEach(function (k, i) { k.classList.toggle('erreicht', spitze >= lagen[i] && p > 0); });
   }
   var wartet = false;
   window.addEventListener('scroll', function () {
