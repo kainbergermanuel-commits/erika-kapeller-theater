@@ -87,7 +87,10 @@ ticket: nein
         <li><b>Verlage</b><span><a href="http://www.plausus.de" target="_blank" rel="noopener">Plausus</a> · <a href="http://www.adspecta.de" target="_blank" rel="noopener">Adspecta</a></span></li>
       </ul>
     </div>
-    <form class="formular erscheint v1" novalidate>
+    <form class="formular erscheint v1" id="formular" method="post" action="https://formular.erikakapeller.com/kontakt.php" novalidate>
+      <div class="nicht-ausfuellen" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="t" value="">
+      <input type="hidden" name="thema" value="">
       <div class="feld"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
       <div class="feld"><label for="f-email">E-Mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
       <div class="feld"><label for="f-verein">Theatergruppe / Schule</label><input id="f-verein" name="verein" autocomplete="organization"></div>
@@ -106,7 +109,7 @@ ticket: nein
       <div class="feld ganz"><label for="f-nachricht">Nachricht</label><textarea id="f-nachricht" name="nachricht" required></textarea></div>
       <div class="ganz" style="display:flex;flex-wrap:wrap;gap:18px 26px;align-items:center">
         <button class="knopf" type="submit">Nachricht senden <span class="pfeil" aria-hidden="true">→</span></button>
-        <p class="formular-hinweis">Öffnet Ihr E-Mail-Programm mit der fertigen Nachricht.</p>
+        <p class="formular-hinweis" data-form-status role="status" aria-live="polite"></p>
       </div>
     </form>
   </div>

@@ -542,6 +542,11 @@ body.navi-offen { overflow: hidden; }
 .feld textarea { min-height: 140px; resize: vertical; }
 .feld input:focus, .feld textarea:focus, .feld select:focus { outline: none; border-color: var(--messing); }
 .formular-hinweis { font-size: 13.5px; color: var(--grau); }
+.formular-hinweis:empty { display: none; }
+.formular-hinweis.ok { color: var(--messing-hell); font-size: 15px; }
+.formular-hinweis.fehler { color: #e8a598; font-size: 15px; }
+.formular .knopf[disabled] { opacity: .6; cursor: wait; }
+.nicht-ausfuellen { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 @media (max-width: 640px) { .formular { grid-template-columns: 1fr; } }
 .kontaktwege { list-style: none; display: flex; flex-direction: column; gap: 22px; margin-top: 34px; }
 .kontaktwege b { display: block; font-size: 10.5px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--messing); }

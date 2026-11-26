@@ -123,15 +123,37 @@
     });
   });
 
-  // Kontaktformular öffnet das Mailprogramm
+  // Kontaktformular: sendet direkt über formular.erikakapeller.com
   var form = document.querySelector('.formular');
   if (form) {
+    var status = form.querySelector('[data-form-status]');
+    var knopf = form.querySelector('button[type="submit"]');
+    var knopfHtml = knopf ? knopf.innerHTML : '';
+    var tFeld = form.querySelector('input[name="t"]');
+    if (tFeld) tFeld.value = Date.now();
+    var texte = {
+      ok: 'Danke, Ihre Nachricht ist angekommen. Ich melde mich bald.',
+      angaben: 'Bitte Name, eine gültige E-Mail-Adresse und Ihre Nachricht angeben.',
+      zuviel: 'Es wurden gerade sehr viele Nachrichten gesendet. Bitte später noch einmal versuchen oder direkt an mail@erikakapeller.com schreiben.',
+      standard: 'Das Senden hat leider nicht geklappt. Bitte direkt an mail@erikakapeller.com schreiben.'
+    };
+    var zeige = function (art, text) { if (status) { status.textContent = text; status.className = 'formular-hinweis ' + art; } };
+    var q = /[?&](gesendet|fehler)=([^&#]*)/.exec(location.search);
+    if (q) zeige(q[1] === 'gesendet' ? 'ok' : 'fehler', q[1] === 'gesendet' ? texte.ok : (texte[decodeURIComponent(q[2])] || texte.standard));
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var d = new FormData(form);
-      var betreff = 'Anfrage: ' + (d.get('anliegen') || 'Theater');
-      var text = (d.get('nachricht') || '') + '\n\n' + (d.get('name') || '') + (d.get('verein') ? '\n' + d.get('verein') : '') + '\n' + (d.get('email') || '');
-      location.href = 'mailto:mail@erikakapeller.com?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text);
+      if (!form.checkValidity()) { zeige('fehler', texte.angaben); return; }
+      var sel = form.querySelector('select[name="anliegen"]');
+      form.querySelector('input[name="thema"]').value = sel ? sel.options[sel.selectedIndex].text : '';
+      if (knopf) { knopf.disabled = true; knopf.textContent = 'Wird gesendet …'; }
+      fetch(form.action, { method: 'POST', body: new URLSearchParams(new FormData(form)), headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (d) {
+          if (d.ok) { form.reset(); if (tFeld) tFeld.value = Date.now(); zeige('ok', texte.ok); }
+          else zeige('fehler', texte[d.grund] || texte.standard);
+        })
+        .catch(function () { zeige('fehler', texte.standard); })
+        .then(function () { if (knopf) { knopf.disabled = false; knopf.innerHTML = knopfHtml; } });
     });
   }
 
