@@ -49,7 +49,7 @@ KOPF = '''<!doctype html>
   <div class="huelle">
     <a class="marke" href="index.html" aria-label="Erika Kapeller, zur Startseite">
       <span class="marke-name">Erika <em>Kapeller</em></span>
-      <span class="marke-zeile">Autorin · Akteurin · Regisseurin</span>
+      <span class="marke-zeile"><span class="marke-ruhe">Autorin · Akteurin · Regisseurin</span><span class="marke-weg" aria-hidden="true">{marke_weg}</span></span>
     </a>
     <nav class="navi" aria-label="Hauptmenü">
 {navi}
@@ -208,6 +208,7 @@ def bauen():
             titel=meta['titel'], beschreibung=meta['beschreibung'], aktiv=aktiv or 'start', version=VERSION,
             navi=navi, vorhang_navi=vorhang_navi,
             start_aktiv=' aria-current="page"' if aktiv == 'start' else '',
+            marke_weg='↑ Nach oben' if aktiv == 'start' else '← Zur Startseite',
             vorhang='<div class="vorhang" aria-hidden="true"><i></i><i></i></div>\n' if aktiv == 'start' else '',
         ) + tippen(inhalt).rstrip() + '\n' + ticket + FUSS.format(jahr=datetime.date.today().year, version=VERSION)
         (ZIEL / datei.name).write_text(html, encoding='utf-8')

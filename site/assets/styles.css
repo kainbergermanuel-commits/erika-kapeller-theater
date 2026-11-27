@@ -976,3 +976,12 @@ a.ext::after { content: ' ↗'; font-size: .8em; color: var(--messing); }
   .requisit-fueller { width: 190px; }
 }
 .requisit-zeitungen { transform: rotate(4deg); width: min(240px, 55%); }
+
+/* Logo: beim Darüberfahren wird aus der Zeile ein Rückweg, der Name bekommt eine feine Linie */
+.kopf .marke-name { background: linear-gradient(var(--messing), var(--messing)) left 100% / 0 1px no-repeat; padding-bottom: 3px; transition: background-size .45s var(--weich); }
+.kopf .marke-zeile { display: inline-grid; }
+.marke-ruhe, .marke-weg { grid-area: 1 / 1; transition: opacity .3s ease, transform .4s var(--weich); }
+.marke-weg { opacity: 0; transform: translateX(-6px); white-space: nowrap; color: var(--messing-hell); }
+.kopf .marke:hover .marke-name, .kopf .marke:focus-visible .marke-name { background-size: 100% 1px; }
+.kopf .marke:hover .marke-ruhe, .kopf .marke:focus-visible .marke-ruhe { opacity: 0; transform: translateX(6px); }
+.kopf .marke:hover .marke-weg, .kopf .marke:focus-visible .marke-weg { opacity: 1; transform: none; }

@@ -314,3 +314,13 @@
   messen(); ist = ziel; zeichnen();
 })();
 
+
+/* Logo auf der Startseite: sanft nach oben statt neu laden */
+(function () {
+  var m = document.querySelector('.kopf .marke');
+  if (!m || !document.body.classList.contains('seite-start')) return;
+  m.addEventListener('click', function (e) {
+    e.preventDefault();
+    scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
+})();
