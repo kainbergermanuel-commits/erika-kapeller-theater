@@ -66,6 +66,12 @@
         var passt = g === 'alle' || z.getAttribute('data-gattung') === g || (g === 'frei' && z.classList.contains('ist-frei'));
         z.hidden = !passt;
       });
+      // Jahrgangs-Marke nur zeigen, wenn darunter noch ein Stück sichtbar ist
+      document.querySelectorAll('.jahrgang').forEach(function (j) {
+        var n = j.nextElementSibling, da = false;
+        while (n && !n.classList.contains('jahrgang')) { if (!n.hidden) da = true; n = n.nextElementSibling; }
+        j.hidden = !da;
+      });
     });
   }
 
